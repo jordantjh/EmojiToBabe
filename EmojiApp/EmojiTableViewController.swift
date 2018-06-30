@@ -11,7 +11,7 @@ import UIKit
 class EmojiTableViewController: UITableViewController {
     
     //class properties
-    var emojiArray: [String] = ["😚","☀️","💕"]  //baby good morning I love you.
+    var emojiArray: [String] = ["😚","☀️","💝"]  //baby good morning I love you.
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,15 @@ class EmojiTableViewController: UITableViewController {
         cell.textLabel?.text = emojiArray[indexPath.row]
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showSegue", sender: emojiArray[indexPath.row])
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let showVC = segue.destinationViewController as! ShowViewController
+        showVC.localEmoji = sender as! String
     }
 
 }
